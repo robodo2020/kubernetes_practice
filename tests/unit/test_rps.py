@@ -7,7 +7,7 @@ def test_rps(mocker):
     Basic test for Rock Paper Scissors
     """
     # test when pc is rock
-    mocker.patch('rock_paper_scissors.rps.random.randint', return_value = 0)
+    mocker.patch("rock_paper_scissors.rps.random.randint", return_value=0)
 
     game_result, pc_choice = rock_paper_scissors(0)
     assert game_result == 0
@@ -22,7 +22,7 @@ def test_rps(mocker):
     assert pc_choice == 0
 
     # test when is paper
-    mocker.patch('rock_paper_scissors.rps.random.randint', return_value = 1)
+    mocker.patch("rock_paper_scissors.rps.random.randint", return_value=1)
 
     game_result, pc_choice = rock_paper_scissors(0)
     assert game_result == -1
@@ -37,7 +37,7 @@ def test_rps(mocker):
     assert pc_choice == 1
 
     # test when pc is scissors
-    mocker.patch('rock_paper_scissors.rps.random.randint', return_value = 2)
+    mocker.patch("rock_paper_scissors.rps.random.randint", return_value=2)
 
     game_result, pc_choice = rock_paper_scissors(0)
     assert game_result == 1
