@@ -1,0 +1,55 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Setup python environment, run pylint, black and tests
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check format using black
+        run: |
+          black --check ./
+
+      - name: Check code quality using pylint
+        run: |
+          pylint **/*.py # this has error
+
+      - name: Run unit test
+        run: |
+          PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests/unit
+          PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests --cov=src
+
+      - name: Run functional test
+        run: |
+          PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests/functional
+
+      - name: Run coverage
+        run: |
+          PYTHONPATH="${PYTHON_PATH}:./src" coverage run -m pytest -v tests
+
+      - name: Generate coverage report
+        run: |
+          coverage report -m
