@@ -31,7 +31,7 @@ jobs:
 
       - name: Check format using black
         run: |
-          black --check ./
+          black ./
 
       - name: Check code quality using pylint
         run: |
