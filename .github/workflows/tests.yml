@@ -35,7 +35,7 @@ jobs:
 
       - name: Check code quality using pylint
         run: |
-          pylint **/*.py # this has error # this will check my env file as well, is that normal?
+          pylint **/*.py
 
       - name: Run unit test
         run: |

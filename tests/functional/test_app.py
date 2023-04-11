@@ -24,7 +24,6 @@ def test_rps():
     """
     mapping = ["Rock", "Paper", "Scissors"]
     for move in mapping:
-
         with app.test_client() as test_client:
             response = test_client.post(
                 "/rps",
