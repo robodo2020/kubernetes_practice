@@ -31,11 +31,11 @@ jobs:
 
       - name: Check format using black
         run: |
-          black ./
+          black --check ./
 
       - name: Check code quality using pylint
         run: |
-          pylint **/*.py # this has error
+          pylint **/*.py # this has error # this will check my env file as well, is that normal?
 
       - name: Run unit test
         run: |
