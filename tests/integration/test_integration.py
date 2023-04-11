@@ -18,7 +18,6 @@ def test_rps_route():
         response = requests.post(
             f"{APP_URL}/rps",
             data=json.dumps(dict(move=move)),
-            content_type="application/json",
         )
 
         assert response.status_code == 200
