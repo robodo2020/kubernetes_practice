@@ -3,7 +3,7 @@ import json
 import requests
 
 # TODO: get url from env
-APP_URL = "http://localhost:5000"
+APP_URL = "http://localhost:3000"
 
 
 def test_health_route():
