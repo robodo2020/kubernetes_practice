@@ -18,10 +18,12 @@ def test_rps_invalid():
         assert response.status_code == 500
 
 
-def test_rps():
+def test_rps(mocker):
     """
     Test Flask Application and API for Rock Paper Scissors
     """
+    mocker.patch("rock_paper_scissors.rps.random.randint", return_value=0)
+
     mapping = ["Rock", "Paper", "Scissors"]
     for move in mapping:
         with app.test_client() as test_client:
