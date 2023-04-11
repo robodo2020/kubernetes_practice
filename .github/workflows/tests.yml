@@ -38,7 +38,6 @@ jobs:
       - name: Run unit test
         run: |
           PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests/unit
-          # PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests --cov=src
 
       - name: Run functional test
         run: |

@@ -13,7 +13,7 @@ def test_health():
 def test_rps_invalid():
     with app.test_client() as test_client:
         response = test_client.post(
-            "rps", data=json.dumps(dict(move="-1")), content_type="application/json"
+            "/rps", data=json.dumps(dict(move="-1")), content_type="application/json"
         )
         assert response.status_code == 500
 
