@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Setup python environment, run pylint, black and tests
+name: Setup Python, pylint, black and tests
 
 on:
   push:
@@ -40,7 +40,7 @@ jobs:
       - name: Run unit test
         run: |
           PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests/unit
-          PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests --cov=src
+          # PYTHONPATH="${PYTHON_PATH}:./src" python -m pytest -v tests --cov=src
 
       - name: Run functional test
         run: |
@@ -48,7 +48,7 @@ jobs:
 
       - name: Run coverage
         run: |
-          PYTHONPATH="${PYTHON_PATH}:./src" coverage run -m pytest -v tests
+          PYTHONPATH="${PYTHON_PATH}:./src" coverage run -m pytest -v tests/unit tests/functional
 
       - name: Generate coverage report
         run: |
