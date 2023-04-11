@@ -6,7 +6,6 @@ import requests
 APP_URL = os.environ.get("APP_URL")
 
 
-
 def test_health_route():
     response = requests.get(f"{APP_URL}/health")
     assert response.status_code == 200
