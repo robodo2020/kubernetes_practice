@@ -13,7 +13,7 @@ def test_health_route():
 
 
 def test_rps_route():
-    response = requests.post(f"{APP_URL}/health", json={"move": "Rock"})
+    response = requests.post(f"{APP_URL}/rps", json={"move": "Rock"})
     assert response.status_code == 200
     # mapping = ["Rock", "Paper", "Scissors"]
     # for move in mapping:
