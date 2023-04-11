@@ -1,11 +1,10 @@
 name: Build / Push docker image to ghcr
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
+  workflow_run:
+    workflows: ["Setup Python, pylint, black and tests"]
+    types:
+      - completed
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
