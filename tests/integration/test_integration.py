@@ -2,8 +2,9 @@ import os
 import json
 import requests
 
-# TODO: get url from env
-APP_URL = "http://localhost:8080"
+
+APP_URL = os.environ.get("APP_URL")
+
 
 
 def test_health_route():
