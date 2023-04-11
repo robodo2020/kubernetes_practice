@@ -19,7 +19,7 @@ def test_rps_route():
     for move in mapping:
         response = requests.post(f"{APP_URL}/rps", json={"move": move})
         assert response.status_code == 200
-        data = json.loads(response.data)
+        data = response.json()
 
         result, game_result, pc_choice = (
             data["result"],
