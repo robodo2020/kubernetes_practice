@@ -37,7 +37,7 @@ jobs:
 
       - name: Run test
         run: |
-          export APP_URL=http://localhost:3000
+          export APP_URL=http://0.0.0.0:3000
           PYTHONPATH="${PYTHON_PATH}:./src" coverage run -m  pytest -v tests/integration
 
       - name: Generate coverage report
