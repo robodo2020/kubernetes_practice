@@ -23,7 +23,7 @@ jobs:
         run: |
           kubectl create deployment flexport-app --image=ghcr.io/${{ github.repository }}:main
           kubectl wait pods --for condition=Ready --all --timeout=240s
-          kubectl expose deployment/flexport-app --type=NodePort --port 3000
+          kubectl expose deployment/flexport-app --type=NodePort --port 5000
 
       - name: Install dependencies
         run: |
@@ -33,11 +33,11 @@ jobs:
       - name: Test deployment
         run: |
           kubectl get services/flexport-app -o go-template='{{(index .spec.ports 0).nodePort}}'
-          kubectl port-forward service/flexport-app 3000:3000 > /dev/null &
+          kubectl port-forward service/flexport-app 5000:5000 > /dev/null &
 
       - name: Run test
         run: |
-          export APP_URL=http://0.0.0.0:3000
+          export APP_URL=http://localhost:5000
           PYTHONPATH="${PYTHON_PATH}:./src" coverage run -m  pytest -v tests/integration
 
       - name: Generate coverage report
