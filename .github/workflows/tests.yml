@@ -33,7 +33,8 @@ jobs:
 
       - name: Check code quality using pylint
         run: |
-          pylint **/*.py
+          pylint ./src ./tests
+          # pylint **/*.py
 
       - name: Run unit test
         run: |
